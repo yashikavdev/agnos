@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# app/services/bill_generator.rb
 class BillGenerator < ApplicationService
   class << self
     def perform(id)
@@ -5,7 +8,6 @@ class BillGenerator < ApplicationService
 
       total_price = 0
       tax_amount = 0
-      discount_amount = 0
 
       order.order_items.each do |order_item|
         total_price += order_item.quantity * order_item.item.price # return total price of the items
@@ -17,7 +19,7 @@ class BillGenerator < ApplicationService
       price_with_tax = add_tax_percentage_amount_from_price(total_price, tax_amount) # calculate tax on items
       total_amount = price_with_tax - discount_amount
 
-      return total_amount, tax_amount, discount_amount
+      [total_amount, tax_amount, discount_amount]
     end
 
     private
@@ -38,13 +40,8 @@ class BillGenerator < ApplicationService
     end
 
     def add_tax_percentage_amount_from_price(price, tax_rate)
-      tax_amount =  (price / 100.to_f) * tax_rate
+      tax_amount = (price / 100.to_f) * tax_rate
       price + tax_amount
     end
   end
 end
-
-
-
-
-

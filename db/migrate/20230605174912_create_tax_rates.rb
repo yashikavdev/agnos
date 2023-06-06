@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTaxRates < ActiveRecord::Migration[7.0]
   def change
     create_table :tax_rates do |t|

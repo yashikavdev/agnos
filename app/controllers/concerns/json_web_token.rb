@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 require 'jwt'
+
+# app/controllers/concerns/json_web_token.rb
 module JsonWebToken
   extend ActiveSupport::Concern
   SECRET_KEY = Rails.application.secret_key_base
 
-  def self.jwt_token(payload, exp=7.days.from_now)
+  def self.jwt_token(payload, exp = 7.days.from_now)
     payload[:exp] = exp.to_i
     JWT.encode(payload, SECRET_KEY)
   end

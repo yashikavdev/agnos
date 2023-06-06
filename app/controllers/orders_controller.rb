@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# app/controllers/orders_controller.rb
 class OrdersController < ApplicationController
   before_action :authenticate_request
 
@@ -19,6 +22,6 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(order_items_attributes: [:id, :item_id, :order_id, :quantity, :_destroy])
+    params.require(:order).permit(order_items_attributes: %i[id item_id order_id quantity _destroy])
   end
 end

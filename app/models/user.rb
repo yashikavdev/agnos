@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# app/models/user.rb
 class User < ApplicationRecord
   require 'securerandom'
   has_secure_password

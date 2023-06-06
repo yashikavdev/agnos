@@ -1,5 +1,7 @@
-class TaxRatesController < ApplicationController
+# frozen_string_literal: true
 
+# app/controllers/tax_rates_controller.rb
+class TaxRatesController < ApplicationController
   def index
     render json: TaxRate.all
   end
@@ -16,7 +18,7 @@ class TaxRatesController < ApplicationController
 
   private
 
-    def tax_rate_params
-      params.require(:tax_rate).permit(:name, :rate)
-    end
+  def tax_rate_params
+    params.require(:tax_rate).permit(:name, :rate)
+  end
 end
