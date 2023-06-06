@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  resources :items
+  resources :tax_rates, only: [:index, :create]
+  resources :items, only: [:index, :create]
 end
