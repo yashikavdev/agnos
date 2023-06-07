@@ -1,8 +1,20 @@
-# frozen_string_literal: true
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+password = 'pass123'
+1.upto(5) do |i|
+  User.create(
+    email: "user-#{i}@example.com",
+    password: password,
+    password_confirmation: password
+  )
+end
+
+TaxRate.create(rate: 5, name: 'drink')
+TaxRate.create(rate: 3, name: 'beverage')
+TaxRate.create(rate: 7, name: 'soft-drink')
+TaxRate.create(rate: 9, name: 'cooked-food')
+
+Item.create(name: 'Coffee', price: '40', tax_rate_id: 1)
+Item.create(name: 'Sandwitch', price: '', tax_rate_id: 4 )
+Item.create(name: 'orange-soda', price: '', tax_rate_id: 3)
+Item.create(name: 'pizza', price: '', tax_rate_id: 4)
+Item.create(name: 'Wine', price: '1500', tax_rate_id: 2)
+
