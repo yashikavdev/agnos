@@ -3,7 +3,7 @@
 # app/models/payment_detail.rb
 class PaymentDetail < ApplicationRecord
   belongs_to :order
-  enum status: [ :pending, :paid ], _default: :pending
+  enum status: %i[pending paid], _default: :pending
 
   after_create :status_process, :notify_user
 

@@ -34,9 +34,9 @@ gem 'bootsnap', require: false
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
+gem 'letter_opener'
 gem 'rubocop-rails'
-gem "sidekiq", '~> 5.2.8'
-gem "letter_opener"
+gem 'sidekiq', '~> 5.2.8'
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
