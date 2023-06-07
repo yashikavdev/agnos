@@ -1,6 +1,8 @@
 class NotificationWorker
   include Sidekiq::Worker
 
-  def perform(user)
+  def perform(id)
+    user = User.find(id)
+    SuccessMailer.mailer(user.email).deliver_now
   end
 end

@@ -36,6 +36,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 gem 'rubocop-rails'
 gem "sidekiq", '~> 5.2.8'
+gem "letter_opener"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -51,4 +52,3 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
-

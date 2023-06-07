@@ -12,6 +12,6 @@ class PaymentDetail < ApplicationRecord
   end
 
   def notify_user
-    NotificationWorker.perform_in(5.seconds, self.order.user)
+    NotificationWorker.perform_in(20.minutes, order.user.id)
   end
 end
