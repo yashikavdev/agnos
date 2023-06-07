@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_230_606_123_721) do
+ActiveRecord::Schema[7.0].define(version: 20_230_607_065_711) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -47,6 +47,15 @@ ActiveRecord::Schema[7.0].define(version: 20_230_606_123_721) do
     t.index ['user_id'], name: 'index_orders_on_user_id'
   end
 
+  create_table 'payment_details', force: :cascade do |t|
+    t.decimal 'total_due'
+    t.integer 'status', default: 0
+    t.bigint 'order_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['order_id'], name: 'index_payment_details_on_order_id'
+  end
+
   create_table 'tax_rates', force: :cascade do |t|
     t.string 'name'
     t.integer 'rate'
@@ -64,4 +73,5 @@ ActiveRecord::Schema[7.0].define(version: 20_230_606_123_721) do
   add_foreign_key 'order_items', 'items'
   add_foreign_key 'order_items', 'orders'
   add_foreign_key 'orders', 'users'
+  add_foreign_key 'payment_details', 'orders'
 end
