@@ -3,8 +3,8 @@
 # spec/models/item_spec.rb
 require 'rails_helper'
 RSpec.describe Item, type: :model do
-  describe "Associatoins" do
-    it { should belong_to(:tax_rate).optional}
+  describe 'Associatoins' do
+    it { should belong_to(:tax_rate).optional }
   end
 
   describe 'validations' do

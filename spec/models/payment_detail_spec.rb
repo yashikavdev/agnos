@@ -52,5 +52,4 @@ RSpec.describe PaymentDetail, type: :model do
   #     payment_detail.notify_user
   #   end
   # end
-
 end

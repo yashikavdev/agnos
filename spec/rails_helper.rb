@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
@@ -29,7 +31,6 @@ require 'simplecov'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
-require 'rspec/rails'
 require 'database_cleaner'
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 begin
@@ -80,7 +81,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation, except: %w(ar_internal_metadata))
+    DatabaseCleaner.clean_with(:truncation, except: %w[ar_internal_metadata])
   end
 
   config.before(:each) do
@@ -88,7 +89,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, js: true) do
-    DatabaseCleaner.strategy = :truncation, { except: %w(ar_internal_metadata) }
+    DatabaseCleaner.strategy = :truncation, { except: %w[ar_internal_metadata] }
   end
 
   config.before(:each) do

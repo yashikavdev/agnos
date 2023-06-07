@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :payment_detail, class: 'PaymentDetail' do
     total_due { 20.00 }

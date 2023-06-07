@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :item, class: 'Item' do
     name { 'test' }
     price { 20.00 }
-    description { "some text" }
+    description { 'some text' }
   end
 end

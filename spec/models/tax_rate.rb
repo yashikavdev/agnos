@@ -4,8 +4,8 @@
 require 'rails_helper'
 
 RSpec.describe TaxRate, type: :model do
-  describe "Associatoins" do
-    it { should have_one(:item)}
+  describe 'Associatoins' do
+    it { should have_one(:item) }
   end
 
   describe 'validations' do
