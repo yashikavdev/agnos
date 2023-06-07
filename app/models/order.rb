@@ -10,8 +10,10 @@ class Order < ApplicationRecord
 
   after_create :calculate_total_price
 
+  private
+
   def calculate_total_price
-    total_amount, tax_amount, discount_amount = BillGenerator.perform(id)
+    total_amount, tax_amount, discount_amount = InvoiceGenerator.new(id).perform
     generate_order(total_amount, tax_amount, discount_amount)
   end
 

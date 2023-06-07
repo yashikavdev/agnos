@@ -7,8 +7,10 @@ class PaymentDetail < ApplicationRecord
 
   after_create :status_process, :notify_user
 
+  private
+
   def status_process
-    update(status: 1)
+    update(status: :paid)
   end
 
   def notify_user

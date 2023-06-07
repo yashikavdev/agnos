@@ -2,10 +2,9 @@
 
 # app/models/user.rb
 class User < ApplicationRecord
-  require 'securerandom'
   has_secure_password
 
-  validates_presence_of :email, :password
+  validates :email, :password, presence: true
 
   has_many :orders
   has_many :order_items
