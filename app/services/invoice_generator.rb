@@ -9,31 +9,26 @@ class InvoiceGenerator < ApplicationService
   end
 
   def perform
-    total_price = order_items.sum(&:total_amount)
+    price_without_tax = order_items.sum(&:total_amount)
     tax_amount = order_items.sum(&:item_tax_rate)
 
-    discount_amount = apply_discounts(order_items, total_price)
+    discount_amount = apply_discounts(price_without_tax)
 
-    price_with_tax = add_tax_percentage_amount_from_price(total_price, tax_amount) # calculate tax on items
-    total_amount = price_with_tax - discount_amount
+    price_with_discount = price_without_tax - discount_amount
+    total_amount = add_tax_percentage_amount_from_price(price_with_discount, tax_amount) # calculate tax on items
 
     [total_amount, tax_amount, discount_amount]
   end
 
   private
 
-  def apply_discounts(order_items, total_price)
+  # returns active discount sum for items, if discount percentage is 100 that means item is free
+  def apply_discounts(total_price)
     discount_amount = 0
     order_items.each do |order_item|
-      # If the order quantity is greater than 2, then apply a buy-one-get-one-free discount
-      if order_item.quantity > 2
-        discount_amount += order_item.item.price
-      # If the order quantity is greater than 1, then apply a 30% discount
-      elsif order_item.quantity > 1
-        discount_amount += total_price * 0.3
-      end
+      discount = order_item.item.discounts.active.sum(&:percentage)
+      discount_amount += total_price * discount / 100.to_f
     end
-
     discount_amount
   end
 
