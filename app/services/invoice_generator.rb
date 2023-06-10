@@ -22,14 +22,11 @@ class InvoiceGenerator < ApplicationService
 
   private
 
-  # returns active discount sum for items, if discount percentage is 100 that means item is free
+  # returns max active discount applied to all order items
   def apply_discounts(total_price)
     discount_amount = 0
-    order_items.each do |order_item|
-      discount = order_item.item.discounts.active.sum(&:percentage)
-      discount_amount += total_price * discount / 100.to_f
-    end
-    discount_amount
+    discounts = order_items.map{|order_item| order_item.item.discounts.active.pluck(:percentage)}
+    discount_amount += total_price * discounts.max.first/ 100.to_f
   end
 
   def add_tax_percentage_amount_from_price(price, tax_rate)
