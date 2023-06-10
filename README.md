@@ -23,10 +23,14 @@
 1. `You need to pass base_url value on which your server is running`
 2. `You need to pass token inside header with Authorization key for every request except user create and user login after login you will receive a token`
 
+# Updated Postman Collection
+
+1. `https://drive.google.com/file/d/1zcb-VJ4QMEmDAb2IWM1XzLYlYw1juv96/view`
+
 # How discount works
 
-1. `When quantity is greater then 2 it will apply buy 1 get 1 free discount rule`
-2. `when quantity is greater then 1 it will apply 30% discount`
+1. `When item id is 1 it apply 20% or id is 2 it apply 100% discount`
+2. `in case user purchase combination of item including these it will apply discount accordingly`
 
 # Login
 
